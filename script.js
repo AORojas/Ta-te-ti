@@ -10,6 +10,7 @@ const scoreOText = document.getElementById("score-o");
 let currentPlayer = "X";
 let gameState = ["", "", "", "", "", "", "", "", ""];
 let playing = true;
+let startingPlayer = "X";
 let scores = {
   X: 0,
   O: 0,
@@ -66,11 +67,12 @@ function updateControls() {
 
 function startRound() {
   clearBoard();
-  currentPlayer = "X";
+  currentPlayer = startingPlayer;
   playing = true;
   roundStarted = true;
   updateTurn();
   updateControls();
+  startingPlayer = startingPlayer === "X" ? "O" : "X";
 }
 
 function checkWinner() {
@@ -116,6 +118,7 @@ function handleClick(event) {
 function restartGame() {
   clearBoard();
   currentPlayer = "X";
+  startingPlayer = "X";
   playing = false;
   roundStarted = false;
   scores = {
